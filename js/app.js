@@ -18,3 +18,42 @@ function showSuccess(input) {
     formControl.className = 'form-control success';
 }
 
+// CHECK IF EMAIL IS VALID
+function checkEmail(input) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(input.value.trim())) {
+        showSuccess(input);
+    } else {
+        showError(input, 'Email not valid');
+    }
+}
+
+// GET FIELD NAMES
+function getFieldName(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+// CHECK REQUIRED FIELDS
+function checkRequired(inputArr) {
+    inputArr.forEach(function (input) {
+        if (input.value.trim() === '') {
+            showError(input, `${getFieldName(input)} is Required`);
+            if(`${getFieldName(input)}` === password2){
+                showError(input, 'Passwords Do Not Match');
+                console.log('im in')
+            }
+        } else {
+            showSuccess(input);
+        }
+    })
+}
+
+
+// EVENT LISTENERS
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    checkRequired([username, email, password, password2]);
+    checkEmail(email);
+})
+
