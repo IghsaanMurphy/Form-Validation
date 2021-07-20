@@ -1,0 +1,21 @@
+:root {
+  --laser-lemon: #fcfc62ff;
+  --beige: #feffeaff;
+  --silver: #c9c9c9ff;
+  --quick-silver: #a3a3a3ff;
+  --onyx: #424242ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
